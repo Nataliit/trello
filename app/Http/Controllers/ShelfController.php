@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Shelf;
 use App\Desk;
 use Illuminate\Http\Request;
 
@@ -14,29 +15,38 @@ class ShelfController extends Controller
         return response()->json($this->data, 201);
     }
 
-    public function show(Shelf $shelf)
+    public function show($shelf)
     {
         return $shelf;
     }
 
-    public function store(Request $request)
-    {
-        $shelf = Shelf::create($request->all());
+//    public function create($desk_id)
+//    {
+//        $this->data['desk'] = Desk::find($desk_id);
+//        return response()->json($this->data);
+//    }
 
-        return response()->json($shelf, 201);
+    public function store(Request $request, $desk_id)
+    {
+        $input = $request->all();
+        $input['desk_id'] = $desk_id;
+
+        $shelf = Shelf::create($input);
+
+        return response()->json($shelf, $desk_id);
     }
 
-    public function update(Request $request, Shelf $shelf)
+    public function update(Request $request, Shelf $shelf, $desk_id)
     {
         $shelf->update($request->all());
 
-        return response()->json($shelf, 200);
+        return response()->json($shelf, $desk_id);
     }
 
-    public function delete(Shelf $shelf)
+    public function delete(Shelf $shelf, $desk_id)
     {
         $shelf->delete();
 
-        return response()->json(null, 204);
+        return response()->json(null, $desk_id);
     }
 }
