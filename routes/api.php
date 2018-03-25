@@ -12,9 +12,3 @@ use Illuminate\Http\Request;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
-Route::get('desks', 'DeskController@index');
-Route::get('desks/{desk}', 'DeskController@show');
-Route::post('desks', 'DeskController@store');
-Route::put('desks/{desk}', 'DeskController@update');
-Route::delete('desks/{desk}', 'DeskController@delete');

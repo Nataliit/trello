@@ -14,3 +14,9 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('desks', 'DeskController@index');
+Route::get('desks/{desk}', 'DeskController@show');
+Route::post('desks', 'DeskController@store');
+Route::put('desks/{desk}', 'DeskController@update');
+Route::delete('desks/{desk}', 'DeskController@delete');
