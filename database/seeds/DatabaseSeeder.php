@@ -11,7 +11,7 @@ class DatabaseSeeder extends Seeder
      * @return void
      */
 
-    public function generateUsers(){
+    public function generateDesks(){
         $desk_title = [
             'Правки',
             'Установки',
@@ -35,6 +35,9 @@ class DatabaseSeeder extends Seeder
 
     public function run()
     {
+        DB::table('desks')->truncate();
+
+        $this->generateDesks();
         // $this->call(UsersTableSeeder::class);
     }
 }
