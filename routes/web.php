@@ -20,3 +20,9 @@ Route::get('desks/{desk}', 'DeskController@show');
 Route::post('desks', 'DeskController@store');
 Route::put('desks/{desk}', 'DeskController@update');
 Route::delete('desks/{desk}', 'DeskController@delete');
+
+
+
+
+/** Oleg's block of routes **/
+Route::get('show-desks-list', 'DynamicController@showDesksList');
