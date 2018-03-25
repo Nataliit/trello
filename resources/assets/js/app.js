@@ -17,3 +17,4 @@ window.Vue = require('vue');
 
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
 Vue.component('desks-list', require('./components/DesksListComponent.vue'));
+Vue.component('shelves-list', require('./components/ShelvesListComponent.vue'));

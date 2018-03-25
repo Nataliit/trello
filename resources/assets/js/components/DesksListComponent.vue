@@ -1,18 +1,17 @@
 <script>
     if(document.querySelector('#desks-list')){
-        const services_index = new Vue({
+        const desks_index = new Vue({
             el: '#desks-list',
             data(){
                 return{
-                    desks-list: []
+                    desks_list: []
                 }
             },
             mounted(){
                 let self = this;
-
-                axios.get('/uk/categories')
+                axios.get('/desks')
                     .then(function (response) {
-                        console.log(response.data);
+                        self.desks_list = response.data;
                     })
                     .catch(function (error) {
                         console.log(error);

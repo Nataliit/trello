@@ -26,3 +26,4 @@ Route::delete('desks/{desk}', 'DeskController@delete');
 
 /** Oleg's block of routes **/
 Route::get('show-desks-list', 'DynamicController@showDesksList');
+Route::get('show-desk/{id}', 'DynamicController@showShelvesByDesk');

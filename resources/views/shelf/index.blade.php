@@ -1,27 +1,38 @@
-@extends('desks.layouts.desk')
+@extends('shelf.layouts.shelf')
 
 @section('content')
-    <desks-list>
-        <div class="desks-button">
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#create-desk">
-                Create new desk
-            </button>
+    <shelves-list>
+        <div class="shelf-button">
+            {{--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#shelfs-list">--}}
+                {{--Create new desk--}}
+            {{--</button>--}}
         </div>
-        <div id="desks-list" class="desks-list row">
-            <div class="desk-wrap col-md-3" v-for="desk in desks_list">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">@{{ desk.name }}</h5>
-                        <p class="card-text">@{{ desk.description }}</p>
-                        <a href="#" class="btn btn-primary">Read more</a>
+        <div id="shelves-list" class="shelves-list">
+            <div class="desk-wrap row">
+                <div class="shelf-wrap col-md-3"
+                     v-for="shelf in shelves_list"
+                     style="width: 300px; height: 900px; overflow: auto; border: 1px solid black; margin: 10px; padding: 10px;"
+                >
+                    <div class="shelf-title">
+                        <h3>@{{ shelf.name }}</h3>
+                    </div>
+                    <div class="shelf-body">
+                        <div class="shelf-card"
+                             v-for="card in shelf.cards"
+                             :data-card-id="card.id"
+                             style="width: 100%; margin: 5px 10px; padding:10px; border: 1px solid black;"
+                             @click="onClickToCard"
+                        >
+                            @{{ card.name }}
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </desks-list>
+    </shelves-list>
 
     <!-- Modal -->
-    <div class="modal fade" id="create-desk" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal fade" id="create-shelf" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
