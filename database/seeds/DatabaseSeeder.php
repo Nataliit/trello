@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\Desk;
+use App\Shelf;
 
 class DatabaseSeeder extends Seeder
 {
@@ -12,20 +13,20 @@ class DatabaseSeeder extends Seeder
      */
 
     public function generateDesks(){
-        $desk_title = [
+        $desk_titles = [
             'Правки',
             'Установки',
             'Новинки',
             'Лучшее',
         ];
-        $desk_description = [
+        $desk_descriptions = [
             'Все о правках',
             'Все об установках',
             'Все о новинках',
             'Все о лучшем',
         ];
 
-        foreach (array_combine($desk_title, $desk_description) as $name => $description){
+        foreach (array_combine($desk_titles, $desk_descriptions) as $name => $description){
             Desk::create([
                 'name' => $name,
                 'description' => $description
@@ -33,11 +34,31 @@ class DatabaseSeeder extends Seeder
         }
     }
 
+    public function generateShelves(){
+        $desks = Desk::all();
+
+        foreach ($desks as $desk){
+            $names = [
+                'Create',
+                'Read',
+                'Edit',
+                'Delete'
+            ];
+            foreach ($names as $name) {
+                Shelf::create([
+                    'desk_id' => $desk->id,
+                    'name' => $name
+                ]);
+            }
+        }
+    }
+
     public function run()
     {
         DB::table('desks')->truncate();
+        DB::table('shelves')->truncate();
 
         $this->generateDesks();
-        // $this->call(UsersTableSeeder::class);
+        $this->generateShelves();
     }
 }
